@@ -1,0 +1,114 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+
+body {
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
+body {
+  font-size: 0.6em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+.navbar{
+  padding-bottom: 0;
+}
+
+.navbar-collapse{
+  padding-left: 1.5rem;
+}
+
+.navbar .navbar-collapse .nav-item> a {
+    padding-left: 10px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+}
+
+.navbar .navbar-collapse .active > a {
+    border-bottom: 4px solid #000000;
+}
+
+@media screen and (min-width: 680px) {
+  body {
+    font-size: 1.0em;
+  }
+}
+@media screen and (min-width: 1224px) {
+  body {
+    font-size: 1.2em; } }
+@media screen and (min-width: 1400px) {
+  body {
+    font-size: 1.4em; }
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+
+.carousel {
+  margin-bottom: 6rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 5%;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  margin-top: 1rem;
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+/* Google map*/
+.embed-responsive{
+  max-height: 85vh;
+}
+
+footer{
+  margin-top: 2rem;
+  font-size: 0.6em;
+}
+
