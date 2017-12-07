@@ -7,3 +7,6 @@ def index(request):
 
 def map(request):
     return render(request, 'interativeMap.html', {'nbar': 'map'})
+
+def collection(request):
+    return render(request, 'collection.html', {'nbar': 'collection'})
