@@ -38,9 +38,19 @@
             </li>
           </ul>
           <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+              <div class="input-group">
+                  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                  <span class="input-group-btn"><button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button></span>
+              </div>
           </form>
+          <ul class="nav navbar-nav navbar-right ml-2">
+              <li>
+                  <a role="button" id="login-form" class="btn" data-toggle="popover">
+                    <i class="fa fa-user-o fa-lg"></i>
+                  </a>
+              </li>
+          </ul>
+
         </div>
       </nav>
     </header>
@@ -48,8 +58,8 @@
     <main role="main">
       {% block content %}{% endblock %}
     </main>
-    <footer class="container static-bottom">
-        <div class="text-left" id="social">
+    <footer class="navbar-fixed-bottom">
+        <div class="container" id="social">
             <br />
                 <a href="https://www.facebook.com/graingermuseum" target="_blank"><i class="fa fa-facebook fa-3x social" id="social-fb"></i></a>
 	            <a href="https://twitter.com/GraingerMuseum" target="_blank"><i class="fa fa-twitter fa-3x social" id="social-tw"></i></a>
@@ -64,6 +74,30 @@
         </div>
 
     </footer>
+    <div id="popover-content" hidden>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><i class="fa fa-envelope-o"></i> Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1"><i class="fa fa-key"></i> Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input">
+              Keep me logged in
+            </label>
+          </div>
+          <div class="form-group d-flex justify-content-center">
+            <button type="submit" id="login-submit" class="btn btn-outline-dark mr-lg-3">Submit <i class="fa fa-sign-in"></i> </button>
+            <a href="#" class="btn btn-outline-dark">Sign up <i class="fa fa-user-plus"></i></a>
+          </div>
+        </form>
+    </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -72,6 +106,21 @@
     <script>window.jQuery || document.write('<script src="/static/js/jquery-3.2.1.js"><\/script>')</script>
     <script src="/static/js/popper.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle=popover]').popover({
+                html:true,
+                title: '<h3>Log in <i class="fa fa-sign-in"></i> </h3>',
+                container:"body",
+                trigger: "click",
+                placement: "bottom",
+                content: function () {
+                    return $('#popover-content').html()
+                },
+            });
+
+        });
+    </script>
     {% block script %}{% endblock %}
   </body>
 </html>

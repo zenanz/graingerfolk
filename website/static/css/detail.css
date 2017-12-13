@@ -1,0 +1,29 @@
+.detail-heading{
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: .05rem solid #e5e5e5;
+}
+
+.back-fill{
+    background-color: #f9f9f9;
+}
+
+.sidebar{
+    padding: 1rem;
+}
+
+audio{
+    width: 100%;
+}
+
+@media screen and (min-width: 680px) {
+
+}
+
+@media screen and (min-width: 1224px) {
+
+}
+@media screen and (min-width: 1400px) {
+
+}

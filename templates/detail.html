@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <link href="/static/css/detail.css" rel="stylesheet">
+    <div class="detail-heading">
+        <div class="container">
+            <h1 class="detail-title">Creeping Jane</h1>
+            <p class="lead detail-description">An English Folk Song Recorded by Percy Grainger.</p>
+        </div>
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-8 detail-post">
+            <h2>Audio Recording of Creeping Jane</h2>
+            <p>January 1, 2018 by <a href="#">Jason</a></p>
+            <p>
+                This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.
+            </p>
+            <hr>
+            <h3>Handwritten Scores</h3>
+            <div class="embed-responsive embed-responsive-1by1">
+                <object class="embed-responsive-item" data="{{ pdf }}#view=Fit&message=0" type="application/pdf"></object>
+            </div>
+            <audio controls>
+              <source src="{{ content }}" type="audio/mpeg">
+              Your browser does not support the audio tag.
+            </audio>
+
+        </div>
+        <aside class="col-sm-3 ml-sm-auto detail-sidebar">
+            <div class="sidebar back-fill">
+                <h4>Allied materials</h4>
+                <ul class="list-unstyled">
+                    <li>Creeping Jane published score</li>
+                    <li>Joseph Taylor</li>
+                    <li>English Folk songs</li>
+                </ul>
+            </div>
+            <div class="sidebar">
+                <h4>Archives</h4>
+                <ol class="list-unstyled">
+                  <li><a href="#">March 2014</a></li>
+                  <li><a href="#">February 2014</a></li>
+                  <li><a href="#">January 2014</a></li>
+                  <li><a href="#">December 2013</a></li>
+                  <li><a href="#">November 2013</a></li>
+                  <li><a href="#">October 2013</a></li>
+                  <li><a href="#">September 2013</a></li>
+                  <li><a href="#">August 2013</a></li>
+                  <li><a href="#">July 2013</a></li>
+                  <li><a href="#">June 2013</a></li>
+                  <li><a href="#">May 2013</a></li>
+                  <li><a href="#">April 2013</a></li>
+                </ol>
+            </div>
+
+            <div class="sidebar"></div>
+        </aside>
+    </div>
+    </div>
+{% endblock %}
+{% block script %}
+{% endblock %}
