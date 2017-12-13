@@ -2,12 +2,12 @@
 {% block content %}
     <link href="/static/css/detail.css" rel="stylesheet">
     <div class="detail-heading">
-        <div class="container">
+        <div class="container-fluid">
             <h1 class="detail-title">Creeping Jane</h1>
             <p class="lead detail-description">An English Folk Song Recorded by Percy Grainger.</p>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
     <div class="row">
         <div class="col-sm-8 detail-post">
             <h2>Audio Recording of Creeping Jane</h2>
@@ -26,15 +26,12 @@
             </audio>
 
         </div>
-        <aside class="col-sm-3 ml-sm-auto detail-sidebar">
-            <div class="sidebar back-fill">
-                <h4>Allied materials</h4>
-                <ul class="list-unstyled">
-                    <li>Creeping Jane published score</li>
-                    <li>Joseph Taylor</li>
-                    <li>English Folk songs</li>
-                </ul>
+        <aside class="col-sm-4 ml-sm-auto detail-sidebar">
+            <div class="sidebar text-center w-100">
+                <h2>Recommendation Bubbles</h2>
+                <div class="bubbleChart"></div>
             </div>
+
             <div class="sidebar">
                 <h4>Archives</h4>
                 <ol class="list-unstyled">
@@ -52,11 +49,117 @@
                   <li><a href="#">April 2013</a></li>
                 </ol>
             </div>
-
             <div class="sidebar"></div>
         </aside>
     </div>
     </div>
 {% endblock %}
 {% block script %}
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+  <script>
+        $(document).ready(function () {
+              var bubbleChart = new d3.svg.BubbleChart({
+                supportResponsive: true,
+                //container: => use @default
+                size: 600,
+                //viewBoxSize: => use @default
+                innerRadius: 600 / 3.5,
+                //outerRadius: => use @default
+                radiusMin: 50,
+                //radiusMax: use @default
+                //intersectDelta: use @default
+                //intersectInc: use @default
+                //circleColor: use @default
+                data: {
+                  items: [
+                    {text: "Joseph Taylor", count: "236"},
+                    {text: "Creeping Jane", count: "382"},
+                    {text: "Percy Grainger", count: "170"},
+                    {text: "Ella Grainger", count: "123"},
+                    {text: "Costume", count: "12"},
+                    {text: "English Folk Songs", count: "170"},
+                    {text: "Creeping Jane Trail", count: "382"},
+                    {text: "Whip", count: "10"},
+                    {text: "Handwritten Score", count: "170"},
+                  ],
+                  eval: function (item) {return item.count;},
+                  classed: function (item) {return item.text.split(" ").join("");}
+                },
+                plugins: [
+                  {
+                    name: "central-click",
+                    options: {
+                      text: "(See more detail)",
+                      style: {
+                        "font-size": "12px",
+                        "font-style": "italic",
+                        "font-family": "Source Sans Pro, sans-serif",
+                        //"font-weight": "700",
+                        "text-anchor": "middle",
+                        "fill": "white"
+                      },
+                      attr: {dy: "65px"},
+                      centralClick: function() {
+                        alert("Here is more details!!");
+                      }
+                    }
+                  },
+                  {
+                    name: "lines",
+                    options: {
+                      format: [
+                        {// Line #0
+                          textField: "count",
+                          classed: {count: true},
+                          style: {
+                            "font-size": "28px",
+                            "font-family": "Source Sans Pro, sans-serif",
+                            "text-anchor": "middle",
+                            fill: "white"
+                          },
+                          attr: {
+                            dy: "0px",
+                            x: function (d) {return d.cx;},
+                            y: function (d) {return d.cy;}
+                          }
+                        },
+                        {// Line #1
+                          textField: "text",
+                          classed: {text: true},
+                          style: {
+                            "font-size": "14px",
+                            "font-family": "Source Sans Pro, sans-serif",
+                            "text-anchor": "middle",
+                            fill: "white"
+                          },
+                          attr: {
+                            dy: "20px",
+                            x: function (d) {return d.cx;},
+                            y: function (d) {return d.cy;}
+                          }
+                        }
+                      ],
+                      centralFormat: [
+                        {// Line #0
+                          style: {"font-size": "50px"},
+                          attr: {}
+                        },
+                        {// Line #1
+                          style: {"font-size": "30px"},
+                          attr: {dy: "40px"}
+                        }
+                      ]
+                    }
+                  }]
+              });
+            });
+  </script>
 {% endblock %}

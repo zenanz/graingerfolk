@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('interativeMap', views.map, name='map'),
     path('collection', views.collection, name='collection'),
-    path('collection/detail/<int:id>/', views.AtoM_API_CALL),
+    path('collection/detail/<slug:description>/', views.AtoM_API_CALL),
 ]

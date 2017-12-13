@@ -27,3 +27,17 @@ audio{
 @media screen and (min-width: 1400px) {
 
 }
+
+.bubbleChart {
+  max-width: 100%;
+  height: auto;
+    z-index: -1;
+}
+.bubbleChart svg{
+  background: #ffffff;
+}
+
+.container-fluid{
+    padding-left: 4rem;
+    padding-right: 4rem;
+}

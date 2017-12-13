@@ -16,14 +16,14 @@ def map(request):
 def collection(request):
     return render(request, 'collection.html', {'nbar': 'collection'})
 
-def AtoM_API_CALL(request,id):
+def AtoM_API_CALL(request,description):
     connection = client.HTTPConnection(ATOM_LOC)
-    connection.request('GET', '/api/informationobjects/creeping-jane-trail',headers={'REST-API-Key': API_KEY})
+    connection.request('GET', '/api/informationobjects/'+description+'-trail',headers={'REST-API-Key': API_KEY})
     response = connection.getresponse()
     js = json.loads(response.read())
     music = urlparse("http://"+js["digital_object"]["reference_url"])._replace(netloc=ATOM_LOC).geturl()
 
-    connection.request('GET', '/api/informationobjects/creeping-jane', headers={'REST-API-Key': API_KEY})
+    connection.request('GET', '/api/informationobjects/'+description, headers={'REST-API-Key': API_KEY})
     response = connection.getresponse()
     js = json.loads(response.read())
     pdf = urlparse("http://" + js["digital_object"]["url"])._replace(netloc=ATOM_LOC).geturl()
