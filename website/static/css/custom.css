@@ -292,3 +292,20 @@ footer .featurette-divider{
 .popover {
    background-color: rgba(255,255,255,.8);
 }
+
+.login{
+     -webkit-transform: scale(1);
+     /* Browser Variations: */
+     -moz-transform: scale(1);
+     -o-transform: scale(1);
+     -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+     -o-transition-duration: 0.5s;
+}
+
+.login:hover{
+     color: #40c5ff;
+     -webkit-transform: scale(1.4);
+     -moz-transform: scale(1.4);
+     -o-transform: scale(1.4);
+}
