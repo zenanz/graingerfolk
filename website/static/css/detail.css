@@ -1,5 +1,5 @@
 .detail-heading{
-    margin-top: 3rem;
+    padding-top: 3rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: .05rem solid #e5e5e5;
@@ -34,10 +34,29 @@ audio{
     z-index: -1;
 }
 .bubbleChart svg{
-  background: #ffffff;
+  background: rgba(255,255,255,0);
 }
 
 .container-fluid{
     padding-left: 4rem;
     padding-right: 4rem;
+}
+.detail-heading{
+    position: relative;
+}
+.detail-heading:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: url("/static/image/background.jpg");
+    opacity: 0.3;
+}
+
+#heading-content {
+    position: relative;
+    z-index: 2;
 }

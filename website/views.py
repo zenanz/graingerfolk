@@ -31,3 +31,6 @@ def AtoM_API_CALL(request,description):
 
 
     return render(request, 'detail.html', {'nbar': 'collection', 'content': music, 'pdf':pdf ,'img':img})
+
+def signup(request):
+    return render(request, 'signup.html', {'nbar':'home'})

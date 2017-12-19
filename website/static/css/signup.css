@@ -1,0 +1,46 @@
+body{
+    min-height: 800px;
+    height: 100%;
+}
+
+main{
+    height: 0;
+}
+
+html{
+    height: 100%;
+}
+
+
+main{
+    overflow: hidden;
+    position: relative;
+}
+main:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: url("/static/image/background.jpg");
+    opacity: 0.3;
+}
+
+#bg {
+    position: relative;
+    z-index: 2;
+}
+
+.centering {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-horizontal{
+    padding: 2rem 2rem;
+    background-color: rgba(255,255,255,.8);
+    -webkit-border-radius: .3rem;
+}

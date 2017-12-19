@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div id="bgv">
-<video autoplay muted loop id="background_video">
+<video autoplay loop muted id="background_video">
   <source src="/static/image/bgv.mp4" type="video/mp4">
 </video>
 
@@ -9,9 +9,9 @@
   <h1>Heading</h1>
   <p>Lorem ipsum...</p>
   <!-- Use a button to pause/play the video with JavaScript -->
-    <div>
-        <button id="video_control" onclick="myFunction()">Pause</button>
-        <i class="fa fa-volume-off fa-2x" id="btn_mute" aria-hidden="true" onclick="mute()"></i>
+    <div class="d-flex justify-content-start">
+        <i class="fa fa-pause fa-2x animate_btn mr-3" id="video_control" aria-hidden="true" onclick="myFunction()"></i>
+        <i class="fa fa-volume-off fa-2x animate_btn" id="btn_mute" aria-hidden="true" onclick="mute()"></i>
     </div>
 </div>
 </div>
@@ -127,20 +127,20 @@ var btn_mute = document.getElementById("btn_mute");
 function myFunction() {
     if (video.paused) {
         video.play();
-        btn.innerHTML = "Pause";
+        btn.className = "fa fa-pause fa-2x animate_btn mr-3";
     } else {
         video.pause();
-        btn.innerHTML = "Play";
+        btn.className = "fa fa-play fa-2x animate_btn mr-3";
     }
 }
 
 function mute() {
     if (video.muted) {
         video.muted = false;
-        btn_mute.className = "fa fa-volume-up fa-2x"
+        btn_mute.className = "fa fa-volume-up fa-2x animate_btn"
     } else {
         video.muted = true;
-        btn_mute.className = "fa fa-volume-off fa-2x"
+        btn_mute.className = "fa fa-volume-off fa-2x animate_btn"
     }
 }
 </script>
