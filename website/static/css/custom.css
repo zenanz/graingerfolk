@@ -5,7 +5,7 @@
 
 body {
   color: #5a5a5a;
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: "Georgia", "Times New Roman", "Times", serif;
 }
 
 
@@ -29,8 +29,12 @@ h3 {
     font-size: 1.3em;
 }
 
+h4 {
+    font-size: 1.1em;
+}
+
 .caption{
-    font-size: 0.7rem;
+    font-size: 0.6em;
 }
 
 .navbar{
@@ -75,19 +79,25 @@ input{
     input{
         font-size: 1.0rem !important;
     }
+        dl {
+        font-size: .6em;
+    }
 
 }
 
 @media screen and (min-width: 1224px) {
   body {
     font-size: 1.2em; }
-    .btn{
-
-}
+    dl {
+        font-size: .7em;
+    }
 }
 @media screen and (min-width: 1400px) {
   body {
     font-size: 1.4em; }
+    dl{
+        font-size: .7em;
+    }
 
 }
 

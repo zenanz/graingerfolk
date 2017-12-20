@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block head %}
+    <link href="/static/css/album.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="container-fluid" id="card-container">
+        <div class="container pt-5 pb-3">
+            <h1>Search Results</h1>
+            <p>Folk Song Explorer</p>
+        </div>
+        <div class="container pb-5">
+            <form class="form-inline" action="/collection/search/" name="search" method="post">{% csrf_token %}
+                <div class="input-group w-100">
+                    <input class="form-control" type="text"
+                           placeholder="Search"
+                           aria-label="Search" {% if placeholder is not None %}value="{{ placeholder }}"{% endif %}
+                           name="keyword">
+                    <span class="input-group-btn">
+                        <button class="btn btn-dark" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="container pb-5" id="cards">
+            <div class="card-columns">
+                {% for item in results %}
+                    <div class="card">
+                        {% if item.thumbnail_url is None %}
+                            <div class="card-header"><h4 class="card-title text-center">{{ item.title }}</h4></div>
+                        {% endif %}
+                        {% if item.thumbnail_url %}
+                            <div class="card-img-container">
+                                <img class="card-img " src="{{ item.thumbnail_url }}" alt="Card image cap">
+                                <h4 class="card-title card-title-overlay">{{ item.title }}</h4>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <dl class="row mb-0">
+                                <dt class="col-md-6 br-solid"><p><i class="fa fa-user pr-2"></i>Creators</p></dt>
+                                <dd class="col-md-6">
+                                    {% for person in item.creators %}
+                                        <p>{{ person }}</p>
+                                    {% endfor %}
+                                </dd>
+                                <dt class="col-md-6 br-solid"><p><i class="fa fa-calendar pr-2"></i>Creation dates</p>
+                                </dt>
+                                <dd class="col-md-6">
+                                    {% for date in item.creation_dates %}
+                                        <p>{{ date }}</p>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="card-footer text-muted caption">
+                            {{ item.reference_code }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

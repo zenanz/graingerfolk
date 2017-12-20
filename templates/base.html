@@ -40,9 +40,9 @@
                     <a class="nav-link" href="/interativeMap">Map</a>
                 </li>
             </ul>
-            <form class="form-inline mt-2 mt-md-0">
+            <form class="form-inline mt-2 mt-md-0" action="/collection/search/" method="post">{% csrf_token %}
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="keyword">
                     <span class="input-group-btn"><button class="btn btn-outline-dark" type="submit"><i
                             class="fa fa-search"></i></button></span>
                 </div>
