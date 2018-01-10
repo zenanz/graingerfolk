@@ -8,5 +8,6 @@ urlpatterns = [
     path('collection', views.collection, name='collection'),
     path('signup',views.signup),
     path('collection/detail/<slug:description>/', views.AtoM_API_CALL),
+    path('collection/load/', views.load),
     path('collection/search/', views.search),
 ]

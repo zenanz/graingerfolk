@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from http import client
 from urllib.parse import urlparse, urlsplit, urlunsplit
 import json
@@ -20,9 +21,9 @@ def correct_loc(target):
     return u
 
 
-def search_AtoM(keyword=''):
+def search_AtoM(keyword='',skip=0):
     connection = client.HTTPConnection(ATOM_LOC)
-    query = '/api/informationobjects?onlyMedia=1'
+    query = '/api/informationobjects?onlyMedia=1' +'&skip='+str(skip)
     if keyword != '':
         query += '&sq0=' + keyword
     connection.request('GET', query, headers={'REST-API-Key': API_KEY})
@@ -67,10 +68,24 @@ def search(request):
     kw = request.POST.get('keyword')
     print(kw)
     result = search_AtoM(keyword=kw)
-    dump_json(result)
+    #dump_json(result)
     objects = list(result['results'])
     for item in objects:
         if 'thumbnail_url' in item:
             thumbnail = item['thumbnail_url']
             item['thumbnail_url'] = correct_loc(thumbnail)
-    return render(request, 'album.html', {'nbar': 'collection', 'results': objects, 'placeholder': kw})
+    return render(request, 'album.html', {'nbar': 'collection', 'results': objects, 'placeholder': kw,})
+
+def load(request):
+    kw = request.POST.get('keyword')
+    skip = request.POST.get('skip')
+    print(request.body)
+    result = search_AtoM(keyword=kw,skip=int(skip)*10)
+    for item in result['results']:
+        if 'thumbnail_url' in item:
+            thumbnail = item['thumbnail_url']
+            item['thumbnail_url'] = correct_loc(thumbnail)
+    #dump_json(result)
+
+    return JsonResponse(result)
+

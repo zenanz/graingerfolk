@@ -113,7 +113,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>window.jQuery || document.write('<script src="/static/js/jquery-3.2.1.js"><\/script>')</script>
 <script src="/static/js/popper.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
@@ -130,6 +130,16 @@
             },
         });
 
+    });
+</script>
+<script>
+    $(function () {
+        $('.pop').on('click', function () {
+            var caption = $(this).find("p")[0].innerHTML;
+            $('.imagepreview').attr('src', $(this).find("img").attr('src'));
+            $('.imagecaption').html(caption);
+            $('#imagemodal').modal('show');
+        });
     });
 </script>
 {% block script %}{% endblock %}
