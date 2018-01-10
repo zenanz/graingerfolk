@@ -9,10 +9,10 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active" align="center">
-                <img class="d-block w-100" src="/static/image/carousel1.jpg" alt="First slide">
+                <img class="d-block w-100" src="/static/image/carousel4.jpg" alt="First slide">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Grainger Museum Folk Song Platform</h1>
+                        <h1 style="color:#F0F8FF;">Grainger Museum Folk Song Platform</h1>
                     </div>
                 </div>
             </div>
@@ -25,15 +25,15 @@
                 </div>
             </div>
             <div class="carousel-item" align="center">
-                <img class="d-block w-100" src="/static/image/carousel3.jpg" alt="Second slide" width="100%">
+                <img class="d-block w-100" src="/static/image/carousel3_2.jpg" alt="Second slide" width="100%">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Grainger Museum Folk Song Platform</h1>
+                        <h1 style="color:#F0F8FF;">Grainger Museum Folk Song Platform</h1>
                     </div>
                 </div>
             </div>
             <div class="carousel-item" align="center">
-                <img class="d-block w-100" src="/static/image/carousel4.jpg" alt="Second slide" width="100%">
+                <img class="d-block w-100" src="/static/image/carousel1.jpg" alt="Second slide" width="100%">
                 <div class="container">
                     <div class="carousel-caption text-left">
                         <h1>Grainger Museum Folk Song Platform</h1>
@@ -243,4 +243,18 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+            $('.pop').on('click', function () {
+                var caption = $(this).find("p")[0].innerHTML;
+                $('.imagepreview').attr('src', $(this).find("img").attr('src'));
+                $('.imagecaption').html(caption);
+                $('#imagemodal').modal('show');
+            });
+        });
+    </script>
+
 {% endblock %}
