@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate,login
+from website.form import RegistrationForm
 from http import client
 from urllib.parse import urlparse, urlsplit, urlunsplit
 import json
@@ -61,7 +64,19 @@ def AtoM_API_CALL(request, description):
 
 
 def signup(request):
-    return render(request, 'signup.html', {'nbar': 'home'})
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'registration/signup.html', {'nbar': 'home' , 'form': form})
 
 
 def search(request):

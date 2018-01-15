@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from website.admin import user_admin
 
 urlpatterns = [
     url(r'^', include('website.urls')),
     url(r'^admin/', admin.site.urls),
 ]
+
+admin.site.site_header = 'Grainger Folk Song Platform'

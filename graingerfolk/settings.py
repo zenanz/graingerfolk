@@ -55,8 +55,7 @@ ROOT_URLCONF = 'graingerfolk.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,8 +76,13 @@ WSGI_APPLICATION = 'graingerfolk.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'graingerfolk',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': '10.100.75.26',
+        'PORT': '3306',
+
     }
 }
 
@@ -121,3 +125,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "website/static")
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

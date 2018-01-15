@@ -2,27 +2,25 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
-
 body {
-  color: #5a5a5a;
+    color: #5a5a5a;
     font-family: "Georgia", "Times New Roman", "Times", serif;
 }
 
-
 body {
-  font-size: 0.6em;
+    font-size: 0.6em;
 }
 
-.quote{
-    text-shadow: 2px 1px 0 #fff, 7px 6px 0 rgba(0,0,0,0.15);
+.quote {
+    text-shadow: 2px 1px 0 #fff, 7px 6px 0 rgba(0, 0, 0, 0.15);
 }
 
 h1 {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 h2 {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 h3 {
@@ -33,23 +31,23 @@ h4 {
     font-size: 1.1em;
 }
 
-.caption{
+.caption {
     font-size: 0.6em;
 }
 
-.navbar{
-  padding-bottom: 0;
+.navbar {
+    padding-bottom: 0;
     height: 10%;
 }
 
-.navbar-collapse{
+.navbar-collapse {
 }
 
-.navbar-header{
+.navbar-header {
     padding-right: 1rem;
 }
 
-.navbar .navbar-collapse .nav-item> a {
+.navbar .navbar-collapse .nav-item > a {
     margin-left: 12px;
     padding-bottom: 16px;
     padding-top: 16px;
@@ -59,48 +57,53 @@ h4 {
     border-bottom: 4px solid #000000;
 }
 
-
-.btn{
+.btn {
     font-size: 0.6rem;
 }
 
-input{
+input {
     font-size: 0.6rem !important;
 }
 
 @media screen and (min-width: 680px) {
-  body {
-    font-size: 1.0em;
-  }
-    .btn{
-    font-size: 1.0rem;
+    body {
+        font-size: 1.0em;
     }
 
-    input{
+    .btn {
+        font-size: 1.0rem;
+    }
+
+    input {
         font-size: 1.0rem !important;
     }
-        dl {
+
+    dl {
         font-size: .6em;
     }
 
 }
 
 @media screen and (min-width: 1224px) {
-  body {
-    font-size: 1.2em; }
+    body {
+        font-size: 1.2em;
+    }
+
     dl {
         font-size: .7em;
     }
 }
+
 @media screen and (min-width: 1400px) {
-  body {
-    font-size: 1.4em; }
-    dl{
+    body {
+        font-size: 1.4em;
+    }
+
+    dl {
         font-size: .7em;
     }
 
 }
-
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -109,35 +112,36 @@ input{
 
 .carousel {
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-  bottom: 5%;
-  z-index: 10;
+    bottom: 5%;
+    z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
-
-
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
-  margin-bottom: 1.5rem;
-  text-align: center;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
-#marketing{
+#marketing {
     margin-top: 6rem;
 }
+
 .marketing h2 {
-  margin-top: 1rem;
-  font-weight: 400;
+    margin-top: 1rem;
+    font-weight: 400;
 }
+
 .marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
+    margin-right: .75rem;
+    margin-left: .75rem;
 }
 
 .headline .col-sm-5 {
@@ -146,16 +150,16 @@ input{
     align-items: center;
 }
 
-.headline .col-sm-7{
+.headline .col-sm-7 {
     padding-left: 0;
     padding-right: 0;
 }
 
-.headline .container-fluid{
+.headline .container-fluid {
     padding-left: 0;
 }
 
-.headline .col-sm-7 img{
+.headline .col-sm-7 img {
     height: 100%;
     width: 100%;
 
@@ -175,19 +179,19 @@ input{
 ------------------------- */
 
 .featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
 .featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -.05rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
 }
 
 /* Google map*/
-.embed-responsive{
-  max-height: 90vh;
+.embed-responsive {
+    max-height: 90vh;
 }
 
 /* Style the video: 100% width and height to cover the entire window */
@@ -200,7 +204,7 @@ input{
 }
 
 /* Add some content at the bottom of the video/page */
-#video_header{
+#video_header {
     position: absolute;
     bottom: 2rem;
     left: 0;
@@ -209,33 +213,32 @@ input{
     padding: 20px;
 }
 
-
-#btn_mute{
+#btn_mute {
     vertical-align: middle;
     color: white;
 }
 
-#btn_mute:hover{
-     color: #ff8734;
+#btn_mute:hover {
+    color: #ff8734;
 }
 
-.animate_btn{
-     -webkit-transform: scale(0.8);
-     /* Browser Variations: */
-     -moz-transform: scale(0.8);
-     -o-transform: scale(0.8);
-     -webkit-transition-duration: 0.5s;
-     -moz-transition-duration: 0.5s;
-     -o-transition-duration: 0.5s;
+.animate_btn {
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
 }
 
-.animate_btn:hover{
-     -webkit-transform: scale(1.1);
-     -moz-transform: scale(1.1);
-     -o-transform: scale(1.1);
+.animate_btn:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
 }
 
-#bgv{
+#bgv {
     z-index: 100;
     margin-bottom: -0.4rem;
     max-height: 58rem;
@@ -244,80 +247,94 @@ input{
 }
 
 .social:hover {
-     -webkit-transform: scale(1.1);
-     -moz-transform: scale(1.1);
-     -o-transform: scale(1.1);
- }
- .social {
-     margin-left: 0.5rem;
-     color: #000000;
-     -webkit-transform: scale(0.8);
-     /* Browser Variations: */
-     -moz-transform: scale(0.8);
-     -o-transform: scale(0.8);
-     -webkit-transition-duration: 0.5s;
-     -moz-transition-duration: 0.5s;
-     -o-transition-duration: 0.5s;
- }
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
 
+.social {
+    margin-left: 0.5rem;
+    color: #000000;
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}
+
+.headline-1 {
+    background-color: #fff3cd;
+}
+
+.headline-2 {
+    background-color: #ff9623;
+}
 
 /*
     Multicoloured Hover Variations
 */
 
- #social-fb:hover {
-     color: #3B5998;
- }
- #social-tw:hover {
-     color: #4099FF;
- }
- #social-sc:hover {
-     color: #fd7e14;
- }
- #social-em:hover {
-     color: #f39c12;
- }
+#social-fb:hover {
+    color: #3B5998;
+}
 
- #social-is:hover {
-     color: #ff4270;
- }
+#social-tw:hover {
+    color: #4099FF;
+}
 
-footer{
-  color: #999;
-  text-align: left;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+#social-sc:hover {
+    color: #fd7e14;
+}
+
+#social-em:hover {
+    color: #f39c12;
+}
+
+#social-is:hover {
+    color: #ff4270;
+}
+
+footer {
+    color: #999;
+    text-align: left;
+    background-color: #f9f9f9;
+    border-top: .05rem solid #e5e5e5;
     margin-left: 0;
-  font-size: .6em;
+    font-size: .6em;
     z-index: 1;
 }
 
-footer > p{
-  margin-bottom: 0;
+footer > p {
+    margin-bottom: 0;
 }
 
-footer .featurette-divider{
-  margin: 0.5rem 0.5rem;
+footer .featurette-divider {
+    margin: 0.5rem 0.5rem;
 }
-
 
 .popover {
-   background-color: rgba(255,255,255,.8);
+    background-color: rgba(255, 255, 255, .8);
 }
 
-.login{
-     -webkit-transform: scale(0.8);
-     /* Browser Variations: */
-     -moz-transform: scale(.8);
-     -o-transform: scale(.8);
-     -webkit-transition-duration: 0.5s;
-     -moz-transition-duration: 0.5s;
-     -o-transition-duration: 0.5s;
+.login {
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+    -moz-transform: scale(.8);
+    -o-transform: scale(.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
 }
 
-.login:hover{
-     color: #40c5ff;
-     -webkit-transform: scale(1.1);
-     -moz-transform: scale(1.1);
-     -o-transform: scale(1.1);
+.login:hover {
+    color: #40c5ff;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.popover-body {
+    padding: 0;
 }

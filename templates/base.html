@@ -84,29 +84,22 @@
 
 </footer>
 <div id="popover-content" hidden>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1"><i class="fa fa-envelope-o"></i> Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    {% if user.is_authenticated %}
+        <div class="container d-flex justify-content-center flex-column py-3">
+        <div><h3 class="text-center">Welcome {{ user.username }}!</h3></div>
+            <a href="/accounts/logout" id="login-submit" class="btn btn-outline-dark">Log out<i
+                    class="fa fa-sign-in"></i></a>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1"><i class="fa fa-key"></i> Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    {% else %}
+
+        <img class="w-100" src="/static/image/login.jpg">
+        <div class="d-flex justify-content-center py-3">
+            <a href="/accounts/login" id="login-submit" class="btn btn-outline-dark mr-4">Log in <i
+                    class="fa fa-sign-in"></i></a>
+            <a href="/accounts/signup" class="btn btn-outline-dark">Sign up <i class="fa fa-user-plus"></i></a>
         </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                Keep me logged in
-            </label>
-        </div>
-        <div class="form-group d-flex justify-content-center">
-            <button type="submit" id="login-submit" class="btn btn-outline-dark mr-4">Submit <i
-                    class="fa fa-sign-in"></i></button>
-            <a href="/signup" class="btn btn-outline-dark">Sign up <i class="fa fa-user-plus"></i></a>
-        </div>
-    </form>
+    {% endif %}
+
 </div>
 
 
@@ -121,7 +114,7 @@
     $(document).ready(function () {
         $('[data-toggle=popover]').popover({
             html: true,
-            title: '<h3>Log in <i class="fa fa-sign-in"></i> </h3>',
+            title: '<h3 class="text-center mb-0">Hello, Folk Song Explorer!</h3>',
             container: "body",
             trigger: "click",
             placement: "bottom",
