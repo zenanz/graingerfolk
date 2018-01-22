@@ -17,7 +17,8 @@
                         </div>
                     {% endfor %}
                     <div class="input-group">
-                        <span class="input-group-addon">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
                             {% if 'username' in field.label_tag %}
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             {% elif 'password' in field.label_tag %}
@@ -27,7 +28,8 @@
                             {% else %}
                                 <i class="fa fa-id-card-o" aria-hidden="true"></i>
                             {% endif %}
-                        </span>
+                            </span>
+                        </div>
                         <input type="{{ field.field.widget.input_type }}" class="form-control"
                                name="{{ field.html_name }}" id="{{ field.id_for_label }}"
                                placeholder="{{ field.initial }}" value="{% if 'password' not in field.label_tag and field.data %}{{ field.data }}{% endif %}"/>
@@ -49,23 +51,5 @@
     </div>
 {% endblock %}
 {% block script %}
-    <script>
-        function main_size() {
-            var h = document.getElementsByTagName('HEADER')[0];
-            var f = document.getElementsByTagName('FOOTER')[0];
-            var b = document.getElementsByTagName('BODY')[0];
-            var m = document.getElementsByTagName('MAIN')[0];
-            m.style.height = (b.clientHeight - h.clientHeight - f.clientHeight) + "px";
-        }
-
-        $(document).ready(function () {
-            main_size();
-        });
-
-        $(window).resize(function () {
-            main_size();
-        });
-
-
-    </script>
+    <script src="/static/js/fullscreen.js"></script>
 {% endblock %}

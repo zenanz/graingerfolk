@@ -97,6 +97,17 @@ def profile(request):
     else:
         return redirect('login')
 
+
+def favorites(request):
+    if request.user.is_authenticated:
+
+
+        return render(request, 'registration/profile.html',
+                      {'nbar': 'home', 'sidebar': 'profile',})
+    else:
+        return redirect('login')
+
+
 def search(request):
     kw = request.POST.get('keyword')
     print(kw)
