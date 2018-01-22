@@ -316,8 +316,24 @@ footer .featurette-divider{
 }
 
 .login:hover{
-     color: #40c5ff;
+     color: #2499FF;
      -webkit-transform: scale(1.1);
      -moz-transform: scale(1.1);
      -o-transform: scale(1.1);
+}
+
+.btn-audio{
+    margin: auto;
+    width: 32px;
+    height: 32px;
+    background:url("/static/image/play.png") no-repeat center bottom;
+    background-size:contain;
+}
+
+.btn-audio2{
+    margin: auto;
+    width: 32px;
+    height: 32px;
+    background:url("/static/image/play.png") no-repeat center bottom;
+    background-size:contain;
 }
