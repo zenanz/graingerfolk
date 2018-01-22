@@ -1,14 +1,20 @@
 from django.contrib.admin import AdminSite
 from django.contrib import admin
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.admin import UserAdmin
+from .models import *
 # Register your models here.
 
-class UserAdmin(AdminSite):
-    site_header = 'Grainger Folk Song Platform'
-    site_title = 'User Administration'
-    index_title = 'User Administration'
 
-user_admin = UserAdmin(name='useradmin')
 
-user_admin.register(User)
-user_admin.register(Group)
+class ProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = 'Profile'
+    fk_name = 'user'
+
+class CustomUserAdmin(UserAdmin):
+    inlines = (ProfileInline, )
+
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)

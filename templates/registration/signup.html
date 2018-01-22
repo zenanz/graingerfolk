@@ -5,23 +5,38 @@
 {% block content %}
     <div class="container h-100 centering" id="bg">
         <form class="form-horizontal" method="post" action="/accounts/signup">{% csrf_token %}
-            <h3 class="text-center py-3"><i class="fa fa-user-plus"></i> Sign In</h3>
-
+            <h3 class="text-center py-3"><i class="fa fa-user-plus"></i> Sign Up</h3>
             {% for field in form %}
-            <div class="form-group">
-                <label for="name" class="col-form-label"><p class="mb-0">{{ field.label_tag }}</p></label>
-                                      {% for error in field.errors %}
-                          <div class="alert alert-warning py-0 my-0"><p class="field-error"><small>{{ error }}</small></p></div>
-                        {% endfor %}
+                <div class="form-group">
+                    <label for="name" class="col-form-label"><p class="mb-0">{{ field.label_tag }}</p></label>
+                    {% for error in field.errors %}
+                        <div class="alert alert-warning py-0 my-0">
+                            <p class="field-error">
+                                <small>{{ error }}</small>
+                            </p>
+                        </div>
+                    {% endfor %}
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="{{ field.field.widget.input_type }}" class="form-control" name="{{ field.html_name }}" id="{{ field.id_for_label }}" placeholder="{{ field.initial }}"/>
+                        <span class="input-group-addon">
+                            {% if 'username' in field.label_tag %}
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            {% elif 'password' in field.label_tag %}
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            {% elif 'mail' in field.label_tag %}
+                                <i class="fa fa-envelope-o fa" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                            {% endif %}
+                        </span>
+                        <input type="{{ field.field.widget.input_type }}" class="form-control"
+                               name="{{ field.html_name }}" id="{{ field.id_for_label }}"
+                               placeholder="{{ field.initial }}" value="{% if 'password' not in field.label_tag and field.data %}{{ field.data }}{% endif %}"/>
                     </div>
                     <div>
                         <small class="text-muted">{{ field.help_text|safe }}</small>
                     </div>
 
-            </div>
+                </div>
             {% endfor %}
 
 

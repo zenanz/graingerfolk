@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block head %}
+    <link href="/static/css/accountcenter.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.min.css"
+          rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="container h-100 d-flex flex-column justify-content-center" id="bg">
+        <div class="row h-100 justify-content-between my-3 mx-1">
+            <div class="col-2 profile-sidebar px-0">
+                <div class="py-2 text-center quote solid-bottom">
+                    <h4>Account Center</h4>
+                </div>
+
+                <div class="py-2 row m-0 function  active text-center">
+                    <div class="col-sm-2">
+                        <p><i class="fa fa-id-card"></i></p>
+                    </div>
+                    <div class="col-sm-9 text-sm-left">
+                        <p>Profile</p>
+                    </div>
+                </div>
+                <div class="py-2 row m-0 function text-center">
+                    <div class="col-sm-2">
+                        <p><i class="fa fa-folder"></i></p>
+                    </div>
+                    <div class="col-sm-9 text-sm-left">
+                        <p>Collection</p>
+                    </div>
+                </div>
+                <div class="py-2 row m-0 function text-center">
+                    <div class="col-sm-2">
+                        <p><i class="fa fa-history"></i></p>
+                    </div>
+                    <div class="col-sm-9 text-sm-left">
+                        <p>History</p>
+                    </div>
+                </div>
+                <div class="py-2 row m-0 function text-center">
+                    <div class="col-sm-2">
+                        <p><i class="fa fa-gear"></i></p>
+                    </div>
+                    <div class="col-sm-9 text-sm-left">
+                        <p>Settings</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-10 profile-detail">
+                {% block account_info %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
