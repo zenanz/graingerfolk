@@ -2,13 +2,17 @@
 {% block content %}
 <div id=bgv">
 <video autoplay loop muted id="background_video">
-  <source src="/static/image/passion_cut.mp4" type="video/mp4">
-  <source src="/static/image/passion_cut.ogg" type="video/ogg">
+  <source src="/static/image/passion.mp4" type="video/mp4">
 </video>
 
-<div class="content" id="video_header">
-  <h1>Heading</h1>
-  <p>Lorem ipsum...</p>
+<div class="container" id="video_header">
+  <h1>Passion</h1>
+  <p>
+  1999 biopic examining the life and career of the Australian-born musician best known as <br/>
+  concert pianist, arranger of folk tunes (e.g. Country Gardens, Brigg Fair) and his often<br/>
+  bizarre musical inventions.<br/>
+  <a href="https://www.youtube.com/watch?v=ZlD22mA8F80&t=89s" target="view_window" id="moive_link">watch more...</a>
+  </p>
   <!-- Use a button to pause/play the video with JavaScript -->
     <div class="d-flex justify-content-start">
         <i class="fa fa-pause fa-2x animate_btn mr-3" id="video_control" aria-hidden="true" onclick="myFunction()"></i>
@@ -23,8 +27,8 @@
             <div id="Carousel1" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#Carousel1" data-slide-to="0" class="active"></li>
-            <li data-target="Carousel1" data-slide-to="1"></li>
-          	  <li data-target="Carousel1" data-slide-to="2"></li>
+          <li data-target="#Carousel1" data-slide-to="1"></li>
+          <li data-target="#Carousel1" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner";">
           <div class="carousel-item active" align="center">
@@ -67,7 +71,7 @@
         </div>
         <div class="col-sm-5">
             <div class="container" id="inline">
-            <h2>Brigg Fair</h2>
+            <h2 id="collection_name">Brigg Fair</h2>
             <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
             <p>click to listen -> <div class="btn-audio"><audio id="mp3Btn"><source src="/static/image/BriggFair.mp3" type="audio/mpeg" /></audio></div></p>		
         	<p><a class="btn btn-outline-dark" href="#" role="button">View details &raquo;</a></p>	
@@ -82,9 +86,11 @@
 <div class="row" style="background-color: #EBF5FF;"><!-- #C2E5DC -->
     <div class="col-sm-5">
             <div class="container" id="inline">
-            <h2>I’m 17 come Sunday</h2>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+<!--             <span><img src="/static/image/1.png"></span> -->
+            <h2 id="collection_name">I’m 17 come Sunday</h2>
+            <p><span id="collection_name">I’m 17 Come Sunday</span>, sung by Mr Fred Atkinson at the home of Mr W. Goodhand (farmer), Redbourne, Somerset, UK, on 3 September 1905. Phonographed and noted by Percy Grainger on Wax Cylinder Number 48; Song no 125 in Grainger’s English Folk Song Collection. Grainger noted that the song was ‘very rhythmic and accented, not too fast’.</p>
             <p>click to listen -> <div class="btn-audio2"><audio id="mp3Btn2"><source src="/static/image/I’m_17_come_Sunday.mp3" type="audio/mpeg" /></audio></div></p>
+        
             <p><a class="btn btn-outline-dark" href="#" role="button">View details &raquo;</a></p>
         </div>
     </div>
@@ -99,8 +105,9 @@
               <img class="d-block w-100" src="/static/image/I’m 17 come Sunday.jpg" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
-                <h1>Example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+<!--                 <h1>Example headline.</h1> -->
+			  	<p id="col_des">Percy Grainger made a number of recordings and notations of the song <span id="collection_name">I’m 17 Come Sunday</span> between September 1905 and August 1906.  Grainger heard nine different singers perform this song, in various places in northern England including Redbourne, Brigg, Barrow-on-Humber, Tickhill, and Bawtry in Yorkshire. Grainger phonographed four of these performances. 
+			  	</p>
               </div>
             </div>
           </div>
@@ -108,8 +115,7 @@
             <img class="d-block w-100" src="/static/image/I’m 17 come Sunday2.jpg" alt="Second slide" width="100%">
             <div class="container">
               <div class="carousel-caption text-left">
-                <h1>Example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                 <p id="col_des">Percy Grainger made a number of recordings and notations of the song <span id="collection_name">I’m 17 Come Sunday</span> between September 1905 and August 1906.  Grainger heard nine different singers perform this song, in various places in northern England including Redbourne, Brigg, Barrow-on-Humber, Tickhill, and Bawtry in Yorkshire. Grainger phonographed four of these performances.</p>
               </div>
             </div>
           </div>

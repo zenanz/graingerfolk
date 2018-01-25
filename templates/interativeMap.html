@@ -10,9 +10,19 @@
         function initMap() {
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 3,
-                center: {lat: -28.024, lng: 140.887}
+            	zoom: 5,
+                /* center: {lat: -28.024, lng: 140.887} */
+                center: {lat:51.5239, lng: -0.1586},
+            	mapTypeId: google.maps.MapTypeId.HYBRID,
+             	panControl:true,
+            	zoomControl:true,
+            	mapTypeControl:false,
+            	scaleControl:true,
+            	streetViewControl:true,
+            	overviewMapControl:true,
+            	rotateControl:true,
             });
+            
 
             // Create an array of alphabetical characters used to label the markers.
             var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -24,7 +34,8 @@
             var markers = locations.map(function (location, i) {
                 return new google.maps.Marker({
                     position: location,
-                    label: labels[i % labels.length]
+                    label: labels[i % labels.length],
+                    /* icon:'/static/image/note.png' */
                 });
             });
 
@@ -69,7 +80,7 @@
                 {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
 
-        }
+        } 
 
         var locations = [
             {lat: -31.563910, lng: 147.154312},
@@ -94,17 +105,29 @@
             {lat: -42.734358, lng: 147.439506},
             {lat: -42.734358, lng: 147.501315},
             {lat: -42.735258, lng: 147.438000},
-            {lat: -43.999792, lng: 170.463352}
+            {lat: -43.999792, lng: 170.463352},
+        	{lat: 51.520868, lng: -0.130445},
+            {lat: 53.554242, lng: -0.484769},
+            {lat: 53.554242, lng: -0.484769},
+            {lat: 51.427235, lng: -0.226082},
+            {lat: 51.427235, lng: -0.226082},
+            {lat: 57.985996, lng: -3.947143},
+            {lat: 57.985996, lng: -3.947143},
+            {lat: 54.205632, lng: -2.602048},
+            {lat: 54.205632, lng: -2.602048}
+            
         ]
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6P2_1D2icS2qhqQfKOlQ9S1wf89wNjb8&callback=initMap">
+    
+    <script async defer 
+    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6P2_1D2icS2qhqQfKOlQ9S1wf89wNjb8&callback=initMap" >
     </script>
+
 {% endblock %}
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -134,7 +157,8 @@
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 3,
             center: {lat: -28.024, lng: 140.887}
-        });
+        	mapTypeId: google.maps.MapTypeId.SATELLITE
+       });
 
         // Create an array of alphabetical characters used to label the markers.
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -187,4 +211,4 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6P2_1D2icS2qhqQfKOlQ9S1wf89wNjb8&callback=initMap">
 </script>
 </body>
-</html>
+</html> -->

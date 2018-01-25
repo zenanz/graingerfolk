@@ -21,6 +21,14 @@ h1 {
   font-size: 2em;
 }
 
+#collection_name {
+	font-style: italic;
+}
+
+/* #col_des {
+	color:#5A5AAD;
+} */
+
 h2 {
   font-size: 1.5em;
 }
@@ -31,6 +39,15 @@ h3 {
 
 h4 {
     font-size: 1.1em;
+}
+
+
+#moive_link {
+	font-size: 0.5em;
+	color: white;
+}
+#moive_link:hover {
+	color: #2499FF;
 }
 
 .caption{
@@ -111,8 +128,10 @@ input{
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-  bottom: 5%;
+  bottom: 2%;
   z-index: 10;
+  text-align: left;
+   align-items: left;
 }
 
 /* Declare heights because of positioning of img element */
@@ -216,7 +235,7 @@ input{
 }
 
 #btn_mute:hover{
-     color: #ff8734;
+     color: #2499FF;
 }
 
 .animate_btn{
@@ -233,6 +252,7 @@ input{
      -webkit-transform: scale(1.1);
      -moz-transform: scale(1.1);
      -o-transform: scale(1.1);
+     color: #2499FF;
 }
 
 #bgv{
@@ -337,3 +357,10 @@ footer .featurette-divider{
     background:url("/static/image/play.png") no-repeat center bottom;
     background-size:contain;
 }
+
+#down_button {
+	position: absolute; 
+	right: 10px; 
+	bottom: 0px；
+}
+
