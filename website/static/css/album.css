@@ -80,3 +80,7 @@ input{
         transform : translateY(0);
     }
 }
+
+input{
+    z-index: 100;
+}

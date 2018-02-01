@@ -10,12 +10,13 @@
     <title>Grainger Folk</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/static/css/custom.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     {% block head %}
     {% endblock %}
     
@@ -45,8 +46,7 @@
             <form class="form-inline mt-2 mt-md-0" action="/collection/search/" method="post">{% csrf_token %}
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="keyword">
-                    <span class="input-group-btn"><button class="btn btn-outline-dark" type="submit"><i
-                            class="fa fa-search"></i></button></span>
+                    <div class="input-group-append"><button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button></div>
                 </div>
             </form>
             <div class="login d-flex justify-content-center">
@@ -86,29 +86,53 @@
 
 </footer>
 <div id="popover-content" hidden>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1"><i class="fa fa-envelope-o"></i> Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    {% if user.is_authenticated %}
+        <div class="container d-flex justify-content-center flex-column py-3">
+            <div class="row d-flex justify-content-center px-5">
+                    {% if user.userprofile.profile_photo %}
+                        <img class="user" src="{{ user.userprofile.profile_photo.url }}??{% now "Hms" %}">
+                    {% else %}
+                        <img src="/static/image/blank-profile-picture.png" class="user">
+                    {% endif %}
+
+
+            </div>
+            <div class="row d-flex justify-content-center pt-2">
+                <h3 class="text-center">{{ user.first_name }}</h3>
+            </div>
+            <div class='row'>
+                <div class='col-12'>
+                    <hr class="my-1">
+                </div>
+            </div>
+            <div class='justify-content-center d-flex flex-column text-center'>
+                <div class="row justify-content-center">
+                    <a href="/accounts/profile"><i class="fa fa-id-card-o"></i> Profile</a>
+                </div>
+
+                <div class="row justify-content-center">
+                     <a href=""><i class="fa fa-folder-o"></i> Collection</a>
+                </div>
+
+
+            </div>
+
+                <a href="/accounts/logout" id="login-submit" class="btn btn-outline-dark">Log out<i
+                        class="fa fa-sign-in"></i></a>
+
+
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1"><i class="fa fa-key"></i> Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    {% else %}
+
+        <img class="w-100" src="/static/image/login.jpg">
+        <div class="d-flex justify-content-center py-3">
+            <a href="/accounts/login" id="login-submit" class="btn btn-outline-dark mr-4">Log in <i
+                    class="fa fa-sign-in"></i></a>
+            <a href="/accounts/signup" class="btn btn-outline-dark">Sign up <i class="fa fa-user-plus"></i></a>
         </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                Keep me logged in
-            </label>
-        </div>
-        <div class="form-group d-flex justify-content-center">
-            <button type="submit" id="login-submit" class="btn btn-outline-dark mr-4">Submit <i
-                    class="fa fa-sign-in"></i></button>
-            <a href="/signup" class="btn btn-outline-dark">Sign up <i class="fa fa-user-plus"></i></a>
-        </div>
-    </form>
+
+    {% endif %}
+
 </div>
 
 
@@ -117,33 +141,9 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>window.jQuery || document.write('<script src="/static/js/jquery-3.2.1.js"><\/script>')</script>
-<script src="/static/js/popper.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('[data-toggle=popover]').popover({
-            html: true,
-            title: '<h3>Log in <i class="fa fa-sign-in"></i> </h3>',
-            container: "body",
-            trigger: "click",
-            placement: "bottom",
-            content: function () {
-                return $('#popover-content').html()
-            },
-        });
-
-    });
-</script>
-<script>
-    $(function () {
-        $('.pop').on('click', function () {
-            var caption = $(this).find("p")[0].innerHTML;
-            $('.imagepreview').attr('src', $(this).find("img").attr('src'));
-            $('.imagecaption').html(caption);
-            $('#imagemodal').modal('show');
-        });
-    });
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="/static/js/userpopover.js"></script>
 {% block script %}{% endblock %}
 </body>
 </html>

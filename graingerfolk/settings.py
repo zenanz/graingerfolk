@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,8 +57,7 @@ ROOT_URLCONF = 'graingerfolk.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,8 +78,13 @@ WSGI_APPLICATION = 'graingerfolk.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'graingerfolk',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': '10.100.75.26',
+        'PORT': '3306',
+
     }
 }
 
@@ -107,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Australia/Melbourne'
 
 USE_I18N = True
 
@@ -121,3 +127,19 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "website/static")
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "attachment/")
+MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+#SMTP SERVER
+if DEBUG:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = '587'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST_USER = 'zenanz@student.unimelb.edu.au'
+    EMAIL_HOST_PASSWORD = 'zyl940919'
+    EMAIL_USE_TLS = True
+    DEFAULT_FROM_EMAIL = 'password-reset@graingerfolk.com'

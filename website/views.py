@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse
+from django.contrib.auth import authenticate,login
+from website.form import RegistrationForm, ProfileForm, UserForm
 from http import client
 from urllib.parse import urlparse, urlsplit, urlunsplit
 import json
@@ -23,7 +25,7 @@ def correct_loc(target):
 
 def search_AtoM(keyword='',skip=0):
     connection = client.HTTPConnection(ATOM_LOC)
-    query = '/api/informationobjects?onlyMedia=1' +'&skip='+str(skip)
+    query = '/api/informationobjects?' +'skip='+str(skip)
     if keyword != '':
         query += '&sq0=' + keyword
     connection.request('GET', query, headers={'REST-API-Key': API_KEY})
@@ -61,7 +63,49 @@ def AtoM_API_CALL(request, description):
 
 
 def signup(request):
-    return render(request, 'signup.html', {'nbar': 'home'})
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'registration/signup.html', {'nbar': 'home' , 'form': form})
+
+def profile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            uform = UserForm(request.POST,instance=request.user)
+            pform = ProfileForm(request.POST,request.FILES,instance=request.user.userprofile)
+            if pform.is_valid() and uform.is_valid:
+
+                pform.save()
+                print(pform)
+
+                uform.save()
+                return redirect('profile')
+        else:
+            pform = ProfileForm()
+            uform = UserForm()
+
+        return  render(request, 'registration/profile.html', {'nbar': 'home', 'sidebar':'profile', 'pform': pform, 'uform':uform})
+    else:
+        return redirect('login')
+
+
+def favorites(request):
+    if request.user.is_authenticated:
+
+
+        return render(request, 'registration/profile.html',
+                      {'nbar': 'home', 'sidebar': 'profile',})
+    else:
+        return redirect('login')
 
 
 def search(request):

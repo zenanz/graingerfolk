@@ -1,0 +1,87 @@
+{% extends "registration/accountcenter.html" %}
+{% block head %}
+    {{ block.super }}
+    <link href="/static/css/profile.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.min.css"
+          rel="stylesheet">
+{% endblock %}
+{% block account_info %}
+
+                <div class="row justify-content-center">
+                    <div class="col-8">
+
+
+                        <form class="form-horizontal mt-3" action="/accounts/profile" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="row justify-content-center">
+                                <div class="img">
+                                    {% if user.userprofile.profile_photo %}
+                                    <img class="img" src="{{ user.userprofile.profile_photo.url }}?{% now "Hms" %}" width="150px"
+                                         height="150px">
+                                    {% else %}
+                                    <img class="img" src="/static/image/blank-profile-picture.png" width="150px"
+                                     height="150px">
+                                    {% endif %}
+                                    <div class="img-overlay" id="profile_upload_button">
+                                        <div class="text"><p>Change Photo</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ pform.profile_photo.id_for_label }}"></label>
+                                <input type="file"
+                                   name="{{ pform.profile_photo.html_name }}" id="{{ pform.profile_photo.id_for_label }}" onchange="readURL(this)">
+                            </div>
+
+                            <div class="row justify-content-center mb-sm-5">
+                                <h3 class="text-center">{{ user.username }}</h3>
+                            </div>
+                            <div class="form-group row">
+                                <label for="{{ uform.first_name.id_for_label }}" class="col-sm-4 col-form-label"><p>First Name: </p></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="{{ uform.first_name.html_name }}" id="{{ uform.first_name.id_for_label }}" value="{{ user.first_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="{{ uform.last_name.id_for_label }}" class="col-sm-4 col-form-label"><p>Last Name: </p></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="{{ uform.last_name.html_name }}" id="{{ uform.last_name.id_for_label }}" value="{{ user.last_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="{{ uform.email.id_for_label }}" class="col-sm-4 col-form-label"><p>E-mail: </p></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="email" name="{{ uform.email.html_name }}" id="{{ uform.email.id_for_label }}" value="{{ user.email }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="{{ pform.birthday.id_for_label }}" class="col-sm-4 col-form-label"><p>Birthday: </p></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="date" name="{{ pform.birthday.html_name }}" id="{{ pform.birthday.id_for_label }}" value="{{ user.userprofile.birthday|date:"Y-m-d" }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="{{ pform.country.id_for_label }}" class="col-sm-4 col-form-label"><p>Country: </p></label>
+                                <div class="col-sm-8">
+                                   <select class="form-control bfh-countries py-0" data-country="{% firstof user.userprofile.country 'AU' %}" id="{{ pform.country.id_for_label }}" name="{{ pform.country.html_name }}"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="{{ pform.state.id_for_label }}" class="col-sm-4 col-form-label"><p>State: </p></label>
+                                <div class="col-sm-8">
+                                   <select class="form-control bfh-states py-0" data-country="{{ pform.country.id_for_label }}" data-state="{{ user.userprofile.state }}" id="{{ pform.state.id_for_label }}" name="{{ pform.state.html_name }}"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center mt-5">
+                                <button type="submit" class="btn btn-outline-dark  w-50">Save</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+{% endblock %}
+{% block script %}
+    {{ block.super }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+    <script src="/static/js/profile.js"></script>
+{% endblock %}
