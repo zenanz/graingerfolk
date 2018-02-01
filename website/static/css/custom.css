@@ -21,13 +21,42 @@ h1 {
   font-size: 2em;
 }
 
+#white {
+	color: #ffffff;
+}
+#collection_name1 {
+	font-style: italic;
+	color: #ffffff;
+	font-size: 2em;
+}
+
 #collection_name {
 	font-style: italic;
 }
 
-/* #col_des {
-	color:#5A5AAD;
-} */
+#col_des1 {
+	color:#FFFFFF;
+	font-size:1.2em;
+} 
+
+#col_des2 {
+	font-size:1.2em;
+	color:#AC2020;
+}
+
+#col_des3 {
+	font-size:1.2em;
+	color:#000000;
+}
+
+#col_des {
+	color:#FFFFFF;
+}
+
+#firstHeading{
+	font-style: italic;
+	color:#AC2020;
+}
 
 h2 {
   font-size: 1.5em;
