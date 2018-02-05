@@ -6,7 +6,7 @@ var total = 0;
 $(function () {
     load_button.on('click', function () {
         $.ajax({
-            url: 'http://0.0.0.0:8000/collection/load/',
+            url: 'http://10.12.91.169:8000/collection/load/',
             type: 'POST',
             data: {keyword: $('#keyword').attr('value'), skip: skip_count},
             dataType: 'json',
@@ -35,7 +35,19 @@ $(function () {
                     }
 
                     //add creators
-                    body += '</div></div><div class="col-sm-8 d-flex justify-content-center flex-column"><div class="container"><dl class="row py-3 mb-0"><dt class="col-md-6 "><p><i class="fa fa-user pr-2"></i>Creators</p></dt><dd class="col-md-6">';
+                    body += '</div></div><div class="col-sm-8 d-flex justify-content-between flex-column"><div class="container text-sm-right pt-3 pt-sm-0">'
+
+                    if (authenticated){
+                        body += '<a onclick="favorite(this.id)" id="'+obj.slug+'">';
+                        if ($.inArray(obj.slug, favs) > -1){
+                            body += '<i class="fa fa-star fa-lg fav"></i>'
+                        } else {
+                            body += '<i class="fa fa-star-o fa-lg fav"></i>'
+                        }
+                        body += '</a>'
+                    }
+
+                    body += '</div><div class="container"><dl class="row py-3 mb-0"><dt class="col-md-6 "><p><i class="fa fa-user pr-2"></i>Creators</p></dt><dd class="col-md-6">';
                     if (creators != null) {
                         for (var j = 0; j < creators.length; j++) {
                             body += '<p>' + creators[j] + '</p>';
@@ -51,7 +63,7 @@ $(function () {
                     }
 
 
-                    body += '</dd></dl></div></div></div>';
+                    body += '</dd></dl></div><div class="container"></div></div></div>';
                     if (obj.reference_code != null) {
                         footer = '<div class="card-footer text-muted caption text-center">' + obj.reference_code + '</div></div>';
                     } else {

@@ -21,6 +21,44 @@
     background: #fd7e14;
 }
 
+.fa-star-o {
+    -webkit-transform: scale(1);
+    /* Browser Variations: */
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    color: #a5a69f;
+}
+
+.fa-star-o:hover {
+    -webkit-transform: scale(1.5);
+    /* Browser Variations: */
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    color: #fff850;
+}
+
+.fa-star {
+    -webkit-transform: scale(1);
+    /* Browser Variations: */
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    color: #fff850;
+}
+
+.fa-star:hover {
+    -webkit-transform: scale(1.5);
+    /* Browser Variations: */
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    color: #fff850;
+}
+
 dl p {
     margin-bottom: 0.3rem;
 }
@@ -29,12 +67,11 @@ dl p {
     border-right: .05rem solid #e5e5e5;
 }
 
-
-#card-container{
+#card-container {
     position: relative;
 }
 
-#card-container:before{
+#card-container:before {
     content: "";
     position: absolute;
     top: 0;
@@ -52,15 +89,15 @@ dl p {
 
 }
 
-.card{
+.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.flex-column{
+.flex-column {
     flex-direction: column;
 }
 
-input{
+input {
     border: 0.05rem solid #000000 !important;
 }
 
@@ -73,14 +110,14 @@ input{
     from {
         opacity: 0;
         transform: translateY(400px);
-}
+    }
 
     to {
         opacity: 1;
-        transform : translateY(0);
+        transform: translateY(0);
     }
 }
 
-input{
+input {
     z-index: 100;
 }

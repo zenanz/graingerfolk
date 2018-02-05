@@ -46,6 +46,16 @@ main:before{
     -webkit-border-bottom-right-radius: .5rem;
 }
 
+.profile-detail::-webkit-scrollbar{
+       width: 0;
+}
+
+.profile-detail::-webkit-scrollbar-track-piece{
+        background-color: transparent;
+    -webkit-border-radius: 6px;
+}
+
+
 .profile-sidebar{
     background-color: rgba(230,230,230,.8);
     -webkit-border-top-left-radius: .5rem;
