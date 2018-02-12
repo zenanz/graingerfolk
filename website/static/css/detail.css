@@ -60,3 +60,21 @@ audio{
     position: relative;
     z-index: 2;
 }
+
+.item-comment-avatar {
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#reply-icon{
+    color: #6a82fb;
+}
+
+.fa-thumbs-up{
+    color: #fff850;
+}

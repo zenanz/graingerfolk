@@ -3,17 +3,19 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
+from django.db.models import Count
 from website.form import RegistrationForm, ProfileForm, UserForm
 from website.models import *
 from http import client
 from urllib.parse import urlparse, urlsplit, urlunsplit
 import json
+from graingerfolk.settings import ALLOWED_HOSTS
 
 # Create your views here.
 
 ATOM_LOC = "128.250.57.12"
 API_KEY = '799cbb5aae706a3a'
-
+HOST_LOC = ALLOWED_HOSTS[1]+":8000"
 
 def dump_json(target):
     print(json.dumps(target, indent=4))
@@ -58,7 +60,7 @@ def collection(request):
     return render(request, 'collection.html', {'nbar': 'collection'})
 
 
-def AtoM_API_CALL(request, description):
+def detail(request, description):
     connection = client.HTTPConnection(ATOM_LOC)
     connection.request('GET', '/api/informationobjects/' + description + '-trail', headers={'REST-API-Key': API_KEY})
     response = connection.getresponse()
@@ -71,7 +73,17 @@ def AtoM_API_CALL(request, description):
     pdf = urlparse("http://" + js["digital_object"]["url"])._replace(netloc=ATOM_LOC).geturl()
     img = urlparse("http://" + js["digital_object"]["reference_url"])._replace(netloc=ATOM_LOC).geturl()
 
-    return render(request, 'detail.html', {'nbar': 'collection', 'content': music, 'pdf': pdf, 'img': img})
+    comments = Comment.objects.filter(slug=description).annotate(number_of_likes=Count('like'))
+    top_comments = comments.order_by('-number_of_likes').all()[:3]
+
+    return render(request, 'detail.html',
+                  {'nbar': 'collection',
+                   'content': music,
+                   'pdf': pdf, 'img': img,
+                   'slug':description,
+                   'comments':comments,
+                   'host': HOST_LOC,
+                   'top_comments': top_comments})
 
 
 def signup(request):
@@ -111,12 +123,15 @@ def profile(request):
     else:
         return redirect('login')
 
+def setting(request):
+    return render(request, 'registration/setting.html', {'nbar': 'home', 'sidebar': 'setting',})
+
 
 def favorites(request):
     if request.user.is_authenticated:
         kw = request.GET.get('keyword')
         order_date = request.GET.get('date-added')
-        if order_date is None:
+        if order_date is None or order_date == '':
             order_date = '-date_added'
         print(order_date)
         favs = []
@@ -128,7 +143,7 @@ def favorites(request):
             favs.append({'slug': item.slug, 'detail': json.loads(item.detail)})
 
         return render(request, 'registration/favorites.html',
-                      {'nbar': 'home', 'sidebar': 'favorites', 'favs': favs, 'kw': kw})
+                      {'nbar': 'home', 'sidebar': 'favorites', 'favs': favs, 'kw': kw, 'host': HOST_LOC})
     else:
         return redirect('login')
 
@@ -149,7 +164,7 @@ def search(request):
         favs = Favourites.objects.filter(user=request.user).all()
         for object in favs:
             favs_slug.append(object.slug)
-    return render(request, 'album.html', {'nbar': 'collection', 'results': objects, 'placeholder': kw, 'favs': favs_slug })
+    return render(request, 'album.html', {'nbar': 'collection', 'results': objects, 'placeholder': kw, 'favs': favs_slug, 'host': HOST_LOC})
 
 
 def load(request):
@@ -184,6 +199,7 @@ def addFavorite(request):
     else:
         return HttpResponse(401)
 
+
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -194,8 +210,46 @@ def change_password(request):
             return redirect('change_password')
         else:
             messages.error(request, 'Please correct the error below.')
+            return render(request, 'registration/password_change.html', {
+                'form': form
+            })
     else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'registration/password_change.html', {
-        'form': form
-    })
+        if request.user.is_authenticated:
+            form = PasswordChangeForm(request.user)
+            return render(request, 'registration/password_change.html', {
+                'form': form
+            })
+        else:
+            return redirect('login')
+
+def comment(request,description):
+    if request.user.is_authenticated:
+        content = request.POST.get('comment')
+        cid = request.POST.get('cid')
+        recipient = request.POST.get('recipient')
+        next_loc = request.POST.get('next', '/')
+        print (recipient, cid, content, )
+        if cid is not None and cid !='':
+            parent = Comment.objects.get(id=cid)
+            new_comment = Comment(slug=description, user=request.user, content=content+'//@'+parent.user.username+': '+parent.content, parent=parent)
+        else:
+            new_comment = Comment(slug=description, user=request.user, content=content)
+        new_comment.save()
+        return redirect(next_loc)
+    else:
+        return redirect('login')
+
+def like(request, cid):
+    if request.user.is_authenticated:
+        print(cid, request.user.id)
+        cmt = Comment.objects.get(id=cid)
+        if request.user in cmt.like.all():
+            print('in')
+            cmt.like.remove(request.user)
+        else:
+            print('out')
+            cmt.like.add(request.user)
+        count = cmt.like.all().count()
+        return JsonResponse({'count': count})
+    else:
+        return HttpResponse(403)

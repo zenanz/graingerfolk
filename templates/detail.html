@@ -34,11 +34,160 @@
                         <h2>Recommendation Bubbles</h2>
                         <div class="bubbleChart"></div>
                     </div>
+                    <div class="text-center">
+                        <h2>Top Rated Comments</h2>
+                        <div id="top-comment-group">
+                            {% for node in top_comments %}
+                                <div class="card my-4">
+                                    <div class="card-body">
+                                        <div class="container d-flex justify-content-start inline-group">
+                                            {% if node.user.userprofile.profile_photo %}
+                                                <img class="item-comment-avatar mr-3"
+                                                     src="{{ node.user.userprofile.profile_photo.url }}?{% now "Hms" %}">
+                                            {% else %}
+                                                <img class="item-comment-avatar mr-3"
+                                                     src="/static/image/blank-profile-picture.png">
+                                            {% endif %}
+                                            <p class="my-auto">{{ node.user.username }}</p>
+                                        </div>
+                                        <p class="card-text">{{ node.content }}</p>
+                                        <div class="container d-flex justify-content-end">
+                                            <span>
+                                                <a class="like-button"
+                                                   {% if user.is_authenticated %}onclick="like({{ node.id }})"{% endif %}>
+                                                {% if user in node.like.all %}
+                                                    <i class="fa fa-thumbs-up fa-lg animate_btn" id="like-icon-{{ node.id }}"></i>
+                                                {% else %}
+                                                    <i class="fa fa-thumbs-o-up fa-lg animate_btn" id="like-icon-{{ node.id }}"></i>
+                                                {% endif %}
+                                                </a>
+                                            </span>
+                                            <span id="like-count-{{ node.id }}">{{ node.number_of_likes }} |</span>
+                                            <span>
+                                                <a data-toggle="modal" data-target="#commentModal"
+                                                   data-cid="{{ node.id }}"
+                                                   data-username="{{ node.user.username }}"><i
+                                                        class="fa fa-reply fa-lg animate_btn"
+                                                        id="reply-icon"></i>
+                                                </a> {{ node.get_descendant_count }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
 
                 </aside>
             </div>
+            <hr/>
+        </div>
+        <div class="container-fluid">
+            <h3>Comments</h3>
+            <div id="card-group">
+                {% load mptt_tags %}
+                {% recursetree comments %}
+                    <div class="card my-5  d-flex justify-content-center flex-column {% if node.level > 0 %}ml-3{% endif %}">
+                        <div class="card-body">
+                            <div class="container d-flex justify-content-start inline-group">
+
+                                {% if node.user.userprofile.profile_photo %}
+                                    <img class="item-comment-avatar mr-3"
+                                         src="{{ node.user.userprofile.profile_photo.url }}?{% now "Hms" %}">
+                                {% else %}
+                                    <img class="item-comment-avatar mr-3" src="/static/image/blank-profile-picture.png">
+                                {% endif %}
+                                <p class="my-auto">{{ node.user.username }}</p>
+                            </div>
+                            <div class="container mt-3">
+                                <p>{{ node.content }}</p>
+                                <p class="text-muted caption">Created at {{ node.time_created }}</p>
+                            </div>
+                            <div class="container d-flex justify-content-end">
+                                <span><a class="like-button"
+                                         {% if user.is_authenticated %}onclick="like({{ node.id }})"{% endif %}>
+                                    {% if user in node.like.all %}
+                                        <i class="fa fa-thumbs-up fa-lg animate_btn" id="like-icon-{{ node.id }}"></i>
+                                    {% else %}
+                                        <i class="fa fa-thumbs-o-up fa-lg animate_btn" id="like-icon-{{ node.id }}"></i>
+                                    {% endif %}
+                                </a>
+                                </span>
+                                <span id="like-count-{{ node.id }}">{{ node.number_of_likes }} |</span>
+                                <span><a data-toggle="modal" data-target="#commentModal" data-cid="{{ node.id }}"
+                                         data-username="{{ node.user.username }}"><i
+                                        class="fa fa-reply fa-lg animate_btn"
+                                        id="reply-icon"></i></a> {{ node.get_descendant_count }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% if not node.is_leaf_node %}
+                        {{ children }}
+                    {% endif %}
+                {% endrecursetree %}
+            </div>
         </div>
     </div>
+    <hr/>
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <h3 class="mb-5">New Post</h3>
+            <form method="post" action="/collection/comment/{{ slug }}/">{% csrf_token %}
+
+                <div class="form-group">
+                    <label for="comment">Content</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="6"
+                              placeholder="Enter your comment here"></textarea>
+                </div>
+
+                <input type="hidden" id="recipient-name" name="reply" value="">
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <div class="form-group py-3 d-flex justify-content-end">
+                    <input type="submit" class="btn btn-outline-primary px-5" value="Submit">
+                </div>
+
+            </form>
+        </div>
+    {% else %}
+        <div class="container">
+            <p><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> or <a href="/accounts/signup">Sign up</a>
+                to leave your comment.</p>
+        </div>
+
+    {% endif %}
+
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="commentModalLabel">New comment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="reply-form" action="/collection/comment/{{ slug }}/">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="recipient-name" name="recipient">
+                            <input type="hidden" class="form-control" id="reply-to-id" name="cid">
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Comment:</label>
+                            <textarea class="form-control" id="message-text" name="comment" rows="6"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="reply-submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 {% block script %}
     <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
@@ -51,4 +200,8 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
     <script src="/static/js/bubbles.js"></script>
+    <script>
+        var host = '{{ host }}';
+    </script>
+    <script src="/static/js/discussion.js"></script>
 {% endblock %}

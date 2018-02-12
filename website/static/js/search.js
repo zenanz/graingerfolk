@@ -6,7 +6,7 @@ var total = 0;
 $(function () {
     load_button.on('click', function () {
         $.ajax({
-            url: 'http://10.12.91.169:8000/collection/load/',
+            url: 'http://'+host+'/collection/load/',
             type: 'POST',
             data: {keyword: $('#keyword').attr('value'), skip: skip_count},
             dataType: 'json',

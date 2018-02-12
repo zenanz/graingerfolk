@@ -93,22 +93,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
     <script src="/static/js/profile.js"></script>
     <script src="/static/js/favorite.js"></script>
+    <script src="/static/js/userfav.js"></script>
     <script>
-        function fadeFavorite(id) {
-            favorite(id);
-            $("#" + id + "-card").animate({height: "toggle", opacity: 'toggle'}, 500, function () {
-                $(this).remove()
-            });
-
-        }
-
-        function changevalue(order) {
-            if (order === 0) {
-                $('#d').val('-date_added');
-            } else {
-                $('#d').val('date_added');
-            }
-            $('#search-form').submit()
-        }
+        var host = '{{ host }}';
     </script>
 {% endblock %}

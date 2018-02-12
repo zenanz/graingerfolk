@@ -2,7 +2,7 @@ var csrftoken = Cookies.get('csrftoken');
 
 function favorite(id) {
     $.ajax({
-        url: 'http://10.12.91.169:8000/collection/favorites/',
+        url: 'http://'+host+'/collection/favorites/',
         type: 'POST',
         data: {keyword: id},
         dataType: 'json',

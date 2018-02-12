@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from website.storage import OverwriteStorage
 from django.utils import timezone
+from mptt.models import MPTTModel, TreeForeignKey
 import os
 
 
@@ -40,3 +41,17 @@ class Favourites(models.Model):
 
     def __str__(self):
         return self.user.username + '---' + self.slug
+
+class Comment(MPTTModel):
+    slug = models.SlugField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, on_delete=models.CASCADE)
+    content = models.TextField()
+    like = models.ManyToManyField(User, blank=True, related_name='liked_users')
+    time_created = models.DateTimeField(default=timezone.now)
+
+    class MPTTMeta:
+        order_insertion_by = ['time_created']
+
+    def __str__(self):
+        return self.user.username + '\'s comment on ' + self.slug

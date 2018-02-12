@@ -65,3 +65,11 @@ p{
         transform : scaleY(1);
     }
 }
+
+.alert{
+    font-size: 0.8em;
+}
+
+ul{
+    margin-bottom: 0;
+}
