@@ -1,0 +1,101 @@
+#bgv {
+    z-index: 100;
+    margin-bottom: -0.4rem;
+    max-height: 58rem;
+    overflow: hidden;
+    position: relative;
+}
+
+@media screen and (max-width: 600px) {
+  #video_header {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+.headline-1 {
+    background: linear-gradient(to right, #fc5c7d, #6a82fb);
+}
+
+.headline-1 .description{
+    color: #FFFFFF;
+}
+
+.headline-1 .description-title{
+    color: #FFFFFF;
+    font-style: italic;
+    text-align: center;
+}
+
+.headline-1 .carousel-header{
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+}
+
+.headline-2{
+    background: linear-gradient(45deg, #f2994a, #f2c94c);
+}
+
+.headline-2 .description-title{
+    font-style: italic;
+    text-align: center;
+}
+
+.headline-2 .carousel-header{
+    font-style: italic;
+    text-align: center;
+}
+
+
+/* Style the video: 100% width and height to cover the entire window */
+#background_video {
+    position: static;
+    right: 0;
+    bottom: 0;
+    margin-top: -4.2em;
+    margin-bottom: -4.5em;
+    width: 100%;
+    height: auto;
+}
+
+/* Add some content at the bottom of the video/page */
+#video_header {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+
+.bg-audio{
+    display: inline;
+    margin-bottom: 1rem;
+}
+
+#btn_mute {
+    vertical-align: middle;
+    color: white;
+}
+
+#btn_mute:hover {
+    color: #ff8734;
+}
+
+.btn-audio{
+    margin-left: .5rem;
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+    -moz-transform: scale(.8);
+    -o-transform: scale(.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}
+
+.btn-audio:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}

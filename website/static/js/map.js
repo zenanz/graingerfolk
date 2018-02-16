@@ -1,13 +1,322 @@
 function initMap() {
-
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
-        center: {lat: -28.024, lng: 140.887}
+        zoom: 5,
+        minZoom: 3,
+        center: {lat: 51.5239, lng: -0.1586},
+        panControl: false,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: true,
+        streetViewControl: false,
+        overviewMapControl: false,
+        rotateControl: true,
+
+        styles: [
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#0096aa"
+                    },
+                    {
+                        "weight": "0.30"
+                    },
+                    {
+                        "saturation": "-75"
+                    },
+                    {
+                        "lightness": "5"
+                    },
+                    {
+                        "gamma": "1"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#0096aa"
+                    },
+                    {
+                        "saturation": "-75"
+                    },
+                    {
+                        "lightness": "5"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffe146"
+                    },
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "weight": "6"
+                    },
+                    {
+                        "saturation": "-28"
+                    },
+                    {
+                        "lightness": "0"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#e6007e"
+                    },
+                    {
+                        "weight": "1"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#ffe146"
+                    },
+                    {
+                        "saturation": "-28"
+                    },
+                    {
+                        "lightness": "0"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#0096aa"
+                    },
+                    {
+                        "visibility": "off"
+                    },
+                    {
+                        "saturation": "-75"
+                    },
+                    {
+                        "lightness": "5"
+                    },
+                    {
+                        "gamma": "1"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.text",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#ffe146"
+                    },
+                    {
+                        "weight": 8
+                    },
+                    {
+                        "saturation": "-28"
+                    },
+                    {
+                        "lightness": "0"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#0096aa"
+                    },
+                    {
+                        "weight": 8
+                    },
+                    {
+                        "lightness": "5"
+                    },
+                    {
+                        "gamma": "1"
+                    },
+                    {
+                        "saturation": "-75"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    },
+                    {
+                        "color": "#0096aa"
+                    },
+                    {
+                        "saturation": "-75"
+                    },
+                    {
+                        "lightness": "5"
+                    },
+                    {
+                        "gamma": "1"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#0096aa"
+                    },
+                    {
+                        "saturation": "-75"
+                    },
+                    {
+                        "lightness": "5"
+                    },
+                    {
+                        "gamma": "1"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels.text",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    },
+                    {
+                        "color": "#ffe146"
+                    },
+                    {
+                        "saturation": "-28"
+                    },
+                    {
+                        "lightness": "0"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
+        ],
+
+        /*[
+              {
+                "featureType": "administrative.land_parcel",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.neighborhood",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              }
+            ],*/
+
+
     });
+
 
     // Create an array of alphabetical characters used to label the markers.
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
     // Add some markers to the map.
     // Note: The code uses the JavaScript Array.prototype.map() method to
     // create an array of markers based on a given "locations" array.
@@ -15,17 +324,21 @@ function initMap() {
     var markers = locations.map(function (location, i) {
         return new google.maps.Marker({
             position: location,
-            label: labels[i % labels.length]
+            /*                     label: labels[i % labels.length],
+             */                    icon: '/static/image/icons8-music-40-2.png'
         });
     });
 
+    for (var i = 0, len = markers.length; i < len; i++) {
+        markers[i].addListener('mouseover', toggleBounce)
+    }
 
     var contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
-        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+        '<h1 id="firstHeading" class="firstHeading">BYE BYE MY DARLING</h1>' +
         '<div id="bodyContent">' +
-        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        '<p><b>BYE BYE MY DARLING</b>, recorded at <b>London, United Kingdom</b>, is a large ' +
         'sandstone rock formation in the southern part of the ' +
         'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
         'south west of the nearest large town, Alice Springs; 450&#160;km ' +
@@ -40,50 +353,47 @@ function initMap() {
         '(last visited June 22, 2009).</p>' +
         '</div>' +
         '</div>';
-
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
-    var uluru = {lat: -25.363, lng: 131.044};
+    // test marker
+    var byebyemydarling = {lat: 51.420868, lng: -0.130445};
     var marker = new google.maps.Marker({
-        position: uluru,
+        position: byebyemydarling,
         map: map,
-        title: 'Uluru (Ayers Rock)'
+        title: 'BYE BYE MY DARLING',
+        icon: '/static/image/icons8-music-50.png'
     });
+
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
-
+    marker.addListener('mouseover', toggleBounce);
     markers.push(marker)
     // Add a marker clusterer to manage the markers.
     var markerCluster = new MarkerClusterer(map, markers,
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
-
 }
 
+/* have to be different location */
 var locations = [
-    {lat: -31.563910, lng: 147.154312},
-    {lat: -33, lng: 150.1},
-    {lat: -33, lng: 150.2},
-    {lat: -33, lng: 150.3},
-    {lat: -33.851702, lng: 151.216968},
-    {lat: -34.671264, lng: 150.863657},
-    {lat: -35.304724, lng: 148.662905},
-    {lat: -36.817685, lng: 175.699196},
-    {lat: -36.828611, lng: 175.790222},
-    {lat: -37.750000, lng: 145.116667},
-    {lat: -37.759859, lng: 145.128708},
-    {lat: -37.765015, lng: 145.133858},
-    {lat: -37.770104, lng: 145.143299},
-    {lat: -37.773700, lng: 145.145187},
-    {lat: -37.774785, lng: 145.137978},
-    {lat: -37.819616, lng: 144.968119},
-    {lat: -38.330766, lng: 144.695692},
-    {lat: -39.927193, lng: 175.053218},
-    {lat: -41.330162, lng: 174.865694},
-    {lat: -42.734358, lng: 147.439506},
-    {lat: -42.734358, lng: 147.501315},
-    {lat: -42.735258, lng: 147.438000},
-    {lat: -43.999792, lng: 170.463352}
-]
+    {lat: 51.520868, lng: -0.130445},
+    {lat: 53.554242, lng: -0.484769},
+    {lat: 53.564242, lng: -0.484769},
+    {lat: 51.427235, lng: -0.226082},
+    {lat: 51.437235, lng: -0.226082},
+    {lat: 57.985996, lng: -3.947143},
+    {lat: 57.995996, lng: -3.947143},
+    {lat: 54.205632, lng: -2.602048},
+    {lat: 54.215632, lng: -2.602048}
+
+];
+
+function toggleBounce() {
+    if (this.getAnimation() !== null) {
+        this.setAnimation(null);
+    } else {
+        //marker will bounce one time.
+        this.setAnimation(4);
+    }
+}

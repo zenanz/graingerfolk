@@ -12,7 +12,7 @@
                     <h4>Account Center</h4>
                 </div>
 
-                <div class="py-2 row m-0 function {% if sidebar == 'profile' %}active{% endif %} text-center">
+                <div class="py-2 row m-0 function {% if sidebar == 'profile' %}active{% endif %} text-center" id="toProfile">
                     <div class="col-sm-2">
                         <p><i class="fa fa-id-card"></i></p>
                     </div>
@@ -36,7 +36,7 @@
                         <p>History</p>
                     </div>
                 </div>
-                <div class="py-2 row m-0 function text-center">
+                <div class="py-2 row m-0 function {% if sidebar == 'setting' %}active{% endif %} text-center" id="toSetting">
                     <div class="col-sm-2">
                         <p><i class="fa fa-gear"></i></p>
                     </div>

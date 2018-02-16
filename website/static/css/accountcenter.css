@@ -46,6 +46,16 @@ main:before{
     -webkit-border-bottom-right-radius: .5rem;
 }
 
+.profile-detail::-webkit-scrollbar{
+       width: 0;
+}
+
+.profile-detail::-webkit-scrollbar-track-piece{
+        background-color: transparent;
+    -webkit-border-radius: 6px;
+}
+
+
 .profile-sidebar{
     background-color: rgba(230,230,230,.8);
     -webkit-border-top-left-radius: .5rem;
@@ -66,12 +76,12 @@ main:before{
         -webkit-transform: translateX(-10px);
         -ms-transform: translateX(-10px);
         transform: translateX(-10px);
-        background:rgba(10,10,10,0.8);
+        background:rgba(10,10,10,0.3);
         color: rgba(255,255,255,1);
 }
 
 .function.active{
-    background:rgba(10,10,10,0.8);
+    background:rgba(10,10,10,0.5);
     color: rgba(255,255,255,1);
 }
 

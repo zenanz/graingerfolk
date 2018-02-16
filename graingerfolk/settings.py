@@ -10,9 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import pymysql
-pymysql.install_as_MySQLdb()
-
+# import pymysql
+# pymysql.install_as_MySQLdb()
 
 import os
 
@@ -29,7 +28,8 @@ SECRET_KEY = 'r6^$j#_@-msd5m%vwzg9s%#^m+%)(c78p*2lrrc_csh9e9-c)p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','10.13.53.236','10.12.88.205']
+
+ALLOWED_HOSTS = ['0.0.0.0','10.13.53.236','10.12.88.205','localhost','10.12.76.110']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mptt'
 ]
 
 
@@ -80,17 +81,19 @@ WSGI_APPLICATION = 'graingerfolk.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'graingerfolk',
-#         'USER': 'admin',
-#         'PASSWORD': 'admin',
-#         'HOST': '10.100.75.26',
-#         'PORT': '3306',
-# 
-#     }
-# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'graingerfolk',
+        'USER': 'admin',
+        'PASSWORD': '12345678',
+        'HOST': 'graingerfolk.c1bk9tjirgdh.ap-southeast-2.rds.amazonaws.com',
+        'PORT': '3306',
+
+    }
+}
+
 
 
 # Password validation

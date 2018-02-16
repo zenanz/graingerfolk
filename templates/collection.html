@@ -4,7 +4,6 @@
 <video autoplay loop muted id="background_video">
   <source src="/static/image/passion.mp4" type="video/mp4">
 </video>
-
 <div class="container" id="video_header">
   <p>
   Excerpt from the drama film Passion: The Story of Percy Grainger, 1999, directed by Peter Duncan.<br/>
@@ -145,12 +144,9 @@
 <script>
 // Get the video
 var video = document.getElementById("background_video");
-
 // Get the button
 var btn = document.getElementById("video_control");
-
 var btn_mute = document.getElementById("btn_mute");
-
 // Pause and play the video, and change the button text
 function myFunction() {
     if (video.paused) {
@@ -161,7 +157,6 @@ function myFunction() {
         btn.className = "fa fa-play fa-2x animate_btn mr-3";
     }
 }
-
 function mute() {
     if (video.muted) {
         video.muted = false;
@@ -196,7 +191,6 @@ function mute() {
                 audio2.pause(); //pause
             }       
         });
-
     })
 </script>   
 

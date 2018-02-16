@@ -43,10 +43,12 @@
                     <a class="nav-link" href="/interativeMap">Map</a>
                 </li>
             </ul>
-            <form class="form-inline mt-2 mt-md-0" action="/collection/search/" method="post">{% csrf_token %}
+            <form class="form-inline mt-2 mt-md-0" action="/collection/search/" method="get">{% csrf_token %}
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="keyword">
-                    <div class="input-group-append"><button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button></div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
                 </div>
             </form>
             <div class="login d-flex justify-content-center">
@@ -89,11 +91,11 @@
     {% if user.is_authenticated %}
         <div class="container d-flex justify-content-center flex-column py-3">
             <div class="row d-flex justify-content-center px-5">
-                    {% if user.userprofile.profile_photo %}
-                        <img class="user" src="{{ user.userprofile.profile_photo.url }}??{% now "Hms" %}">
-                    {% else %}
-                        <img src="/static/image/blank-profile-picture.png" class="user">
-                    {% endif %}
+                {% if user.userprofile.profile_photo %}
+                    <img class="user" src="{{ user.userprofile.profile_photo.url }}??{% now "Hms" %}">
+                {% else %}
+                    <img src="/static/image/blank-profile-picture.png" class="user">
+                {% endif %}
 
 
             </div>
@@ -105,22 +107,16 @@
                     <hr class="my-1">
                 </div>
             </div>
-            <div class='justify-content-center d-flex flex-column text-center'>
-                <div class="row justify-content-center">
-                    <a href="/accounts/profile"><i class="fa fa-id-card-o"></i> Profile</a>
-                </div>
-
-                <div class="row justify-content-center">
-                     <a href=""><i class="fa fa-folder-o"></i> Collection</a>
-                </div>
+            <div class='text-left py-3 px-3 d-flex justify-content-between flex-column'>
+                <a class="btn btn-outline-dark mb-3" role="button" href="/accounts/profile"><i class="fa fa-id-card-o"></i> Profile</a>
 
 
+                <a class="btn btn-outline-dark" role="button" href="/accounts/favorites"><i class="fa fa-folder-o"></i> Favorites</a>
             </div>
-
-                <a href="/accounts/logout" id="login-submit" class="btn btn-outline-dark">Log out<i
+            <div class="container-fluid text-right">
+                <a href="/accounts/logout" id="login-submit">Log out<i
                         class="fa fa-sign-in"></i></a>
-
-
+            </div>
         </div>
     {% else %}
 
@@ -144,6 +140,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="/static/js/userpopover.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 {% block script %}{% endblock %}
 </body>
 </html>
